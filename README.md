@@ -1,5 +1,5 @@
 # chksm_rs
-the (aburgd/chksm)[https://github.com/aburgd/chksm] program, in rust
+the [aburgd/chksm](https://github.com/aburgd/chksm) program, in rust
 
 # running
 clone repo, `cargo run -- <checksum> <path>`
