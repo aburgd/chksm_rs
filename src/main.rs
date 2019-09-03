@@ -17,9 +17,10 @@ fn main() {
         .into_os_string()
         .into_string()
         .unwrap();
+    let checksum: String = args.checksum;
 
     let file_bytes = open_file(path);
-    let file_hash = digest_file(args.checksum, file_bytes);
+    let file_hash = digest_file(checksum, file_bytes);
     println!("{}", file_hash);
 }
 
