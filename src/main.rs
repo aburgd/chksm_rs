@@ -4,6 +4,20 @@ use std::io::{Read, BufReader};
 use std::fs::File;
 use sha2::{Sha256, Sha512, Digest};
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_digest_file() {
+        let test_filename: String = String::from("test-file.md");
+        let test_file: Vec<u8> = open_file(test_filename);
+        let test_digest: String = digest_file(String::from("sha256"), test_file);
+        let actual_digest: String = String::from("E2318D75A3D991E61F47CBD420368816AA25D0BB186785F522F4DD828F6ACA4A");
+        assert_eq!(test_digest.to_uppercase(), actual_digest);
+    }
+}
+
 #[derive(StructOpt)]
 struct Cli {
     checksum: String,
