@@ -1,5 +1,6 @@
 use structopt::StructOpt;
 use std::path::PathBuf;
+use std::time::Instant;
 use std::io::{Read, BufReader};
 use std::fs::File;
 use sha2::{Sha256, Sha512, Digest};
@@ -26,6 +27,7 @@ struct Cli {
 }
 
 fn main() {
+    let now: Instant = Instant::now();
     let args = Cli::from_args();
     let path = args.path
         .into_os_string()
@@ -35,7 +37,9 @@ fn main() {
 
     let file_bytes = open_file(path);
     let file_hash = digest_file(checksum, file_bytes);
+    let new_now: Instant = Instant::now();
     println!("{}", file_hash);
+    println!("time elapsed: {}ms", new_now.duration_since(now).as_millis());
 }
 
 fn open_file(path: String) -> Vec<u8> {
