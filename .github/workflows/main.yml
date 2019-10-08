@@ -1,0 +1,24 @@
+name: Rust
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+    - uses: actions/checkout@master
+    - name: Build
+      run: cargo build --verbose
+    - name: Run tests
+      run: cargo test --verbose
+    - name: Github Release
+      uses: elgohr/Github-Release-Action@3.0
+      with:
+        args: Latest release from master
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
