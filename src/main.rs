@@ -22,9 +22,9 @@ mod tests {
 
 #[derive(StructOpt)]
 struct Cli {
-    checksum: Option<String>,
     #[structopt(parse(from_os_str))]
     path: PathBuf,
+    checksum: Option<String>,
 }
 
 fn main() {
