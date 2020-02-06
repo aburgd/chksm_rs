@@ -40,7 +40,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        release-tag: ${{ create-release.tag_name }}
+        release-tag: ${{ github.ref }}
         repo-token: ${{ env.GITHUB_TOKEN }}
         upload_token: ${{ steps.create-release.outputs.upload_url }}
         files: 'target/release/chksm{.exe}'
